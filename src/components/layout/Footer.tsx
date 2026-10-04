@@ -7,8 +7,8 @@ export function Footer() {
 
   return (
     <footer className="bg-slate-950/95 relative overflow-hidden border-none shadow-[0_-10px_35px_rgba(0,0,0,0.5)]">
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid grid-cols-1 gap-8 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2.5">
@@ -37,7 +37,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h3 className="mb-3.5 sm:mb-4 text-xs font-bold uppercase tracking-wider text-slate-200">
               Platform & Architecture
             </h3>
             <ul className="space-y-2.5">
@@ -56,7 +56,7 @@ export function Footer() {
 
           {/* Solutions */}
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h3 className="mb-3.5 sm:mb-4 text-xs font-bold uppercase tracking-wider text-slate-200">
               Industrial Solutions
             </h3>
             <ul className="space-y-2.5 text-xs text-slate-300">
@@ -70,7 +70,7 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h3 className="mb-3.5 sm:mb-4 text-xs font-bold uppercase tracking-wider text-slate-200">
               Global Support
             </h3>
             <ul className="space-y-2.5 text-xs">
@@ -80,22 +80,22 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5 text-slate-300">
                 <Phone className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>+49 89 123 4567</span>
+                <a href="tel:+49891234567" className="hover:text-emerald-300 transition-colors">+49 89 123 4567</a>
               </li>
               <li className="flex items-center gap-2.5 text-slate-300">
                 <Mail className="h-4 w-4 text-emerald-400 shrink-0" />
-                <span>engineering@voltedge-energy.com</span>
+                <a href="mailto:engineering@voltedge-energy.com" className="hover:text-emerald-300 transition-colors">engineering@voltedge-energy.com</a>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row">
+        <div className="mt-10 sm:mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row text-center md:text-left">
           <p className="text-xs text-slate-400">
             © {currentYear} VoltEdge Energy GmbH. All rights reserved. Precision telemetry for zero-carbon industry.
           </p>
-          <div className="flex gap-6 text-xs text-slate-400">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs text-slate-400">
             <span className="hover:text-slate-200 transition-colors cursor-pointer">Privacy & GDPR Policy</span>
             <span className="hover:text-slate-200 transition-colors cursor-pointer">Terms of Service</span>
             <span className="hover:text-slate-200 transition-colors cursor-pointer">Security Whitepaper</span>

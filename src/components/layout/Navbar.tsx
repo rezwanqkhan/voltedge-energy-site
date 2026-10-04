@@ -148,60 +148,91 @@ export function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden flex items-center justify-center h-8 w-8 rounded-full text-slate-300 hover:text-white hover:bg-white/10 transition-colors border-none"
+          className="md:hidden flex items-center justify-center h-9 w-9 rounded-full text-slate-300 hover:text-white hover:bg-white/10 transition-colors border-none"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {mobileOpen ? <X className="h-5 w-5 text-emerald-400" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
-      {/* Mobile drawer: Soft rounded-3xl with zero borders */}
+      {/* Mobile drawer: Soft rounded-3xl with backdrop overlay and zero borders */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden mt-2 mx-auto max-w-5xl rounded-3xl bg-slate-900/95 backdrop-blur-2xl shadow-2xl p-5 border-none space-y-2"
-          >
-            {navItems.map((item) => {
-              const isItemActive =
-                pathname === "/"
-                  ? activeSection === item.label
-                  : pathname === item.href;
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => {
-                    if (item.href === "/" && pathname === "/") {
-                      handleHomeClick(e);
-                    } else {
-                      setMobileOpen(false);
-                    }
-                  }}
-                  className={cn(
-                    "block rounded-2xl px-4 py-2.5 text-sm font-semibold transition-colors",
-                    isItemActive
-                      ? "bg-emerald-500/15 text-emerald-300"
-                      : "text-slate-300 hover:bg-white/5 hover:text-white"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <Link
-              href="/contact"
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 px-4 py-2.5 text-center text-sm font-bold transition-all mt-3 shadow-lg"
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md -z-10"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden mt-2 mx-auto max-w-5xl rounded-3xl bg-slate-900/98 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.9)] p-4 sm:p-5 border-none space-y-2"
             >
-              Request Demo
-            </Link>
-          </motion.div>
+              {navItems.map((item) => {
+                const isItemActive =
+                  pathname === "/"
+                    ? activeSection === item.label
+                    : pathname === item.href;
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={(e) => {
+                      if (item.href === "/" && pathname === "/") {
+                        handleHomeClick(e);
+                      } else {
+                        setMobileOpen(false);
+                      }
+                    }}
+                    className={cn(
+                      "flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition-colors",
+                      isItemActive
+                        ? "bg-emerald-500/15 text-emerald-300 font-bold"
+                        : "text-slate-300 hover:bg-white/5 hover:text-white"
+                    )}
+                  >
+                    <span>{item.label}</span>
+                    {isItemActive ? (
+                      <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                    ) : (
+                      <span className="text-slate-600 text-xs">→</span>
+                    )}
+                  </Link>
+                );
+              })}
+
+              {/* Direct Hotline Strip in Mobile Drawer */}
+              <div className="pt-2 border-t border-white/5">
+                <a
+                  href="tel:+49891234567"
+                  className="flex items-center justify-between px-4 py-2.5 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/15 text-xs text-slate-300 transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>Munich Engineering Desk:</span>
+                  </span>
+                  <span className="font-mono-numbers font-bold text-emerald-400">+49 89 123 4567</span>
+                </a>
+              </div>
+
+              <Link
+                href="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 px-4 py-3 text-center text-sm font-extrabold transition-all shadow-[0_4px_20px_rgba(52,211,153,0.35)]"
+              >
+                Request Custom Demo
+              </Link>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

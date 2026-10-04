@@ -82,46 +82,46 @@ export default function ContactPage() {
 
   return (
     <div className="relative overflow-hidden bg-ambient-mesh min-h-screen">
-      <section className="relative pt-32 pb-24 lg:pt-36 lg:pb-32 px-4 sm:px-6">
-        <div className="mx-auto max-w-7xl space-y-16">
+      <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-28 px-4 sm:px-6">
+        <div className="mx-auto max-w-7xl space-y-12 sm:space-y-16">
           {/* Header */}
           <ScrollReveal>
-            <div className="mx-auto max-w-2xl text-center space-y-4">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-semibold shadow-[0_0_15px_rgba(52,211,153,0.2)] border-none">
+            <div className="mx-auto max-w-2xl text-center space-y-3.5 sm:space-y-4">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-semibold shadow-[0_0_15px_rgba(52,211,153,0.2)] border-none">
                 <Zap className="h-3.5 w-3.5 text-emerald-400" />
                 <span>Enterprise Energy Architecture Consultation</span>
               </span>
 
-              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+              <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
                 Contact{" "}
                 <span className="bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent">
                   Engineering
                 </span>
               </h1>
-              <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
+              <p className="text-sm sm:text-lg text-slate-200 leading-relaxed">
                 Connect directly with our industrial IoT systems engineers for technical inquiries, pilot device trials, and custom single-line electrical audits.
               </p>
             </div>
           </ScrollReveal>
 
           {/* Form & Info Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
             {/* Contact Form */}
             <div className="lg:col-span-7">
-              <div className="glass-card p-8 rounded-3xl space-y-6 border-none">
-                <div className="border-b border-white/5 pb-4">
-                  <h2 className="text-xl font-bold text-white">Send Engineering Inquiry</h2>
+              <div className="glass-card p-5 sm:p-8 rounded-3xl space-y-5 sm:space-y-6 border-none">
+                <div className="border-b border-white/5 pb-3.5 sm:pb-4">
+                  <h2 className="text-lg sm:text-xl font-bold text-white">Send Engineering Inquiry</h2>
                   <p className="text-xs text-slate-300 mt-1">
                     All inquiries are assigned to a qualified IoT systems architect within 4 business hours.
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" noValidate>
                   {/* Name */}
-                  <div className="space-y-2">
+                  <div className="space-y-1.5 sm:space-y-2">
                     <label
                       htmlFor="name"
-                      className="block text-xs font-bold text-slate-200 tracking-wider uppercase"
+                      className="block text-[11px] sm:text-xs font-bold text-slate-200 tracking-wider uppercase"
                     >
                       Full Name
                     </label>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="e.g. Dr. Markus Weber"
                       className={cn(
-                        "w-full rounded-2xl bg-slate-950/80 px-4 py-3.5 text-sm text-white placeholder-slate-500 outline-none transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
+                        "w-full rounded-2xl bg-slate-950/80 px-3.5 py-3 sm:px-4 sm:py-3.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
                         errors.name
                           ? "ring-2 ring-red-400"
                           : "focus:ring-2 focus:ring-emerald-400/50"
@@ -148,11 +148,11 @@ export default function ContactPage() {
                   </div>
 
                   {/* Email & Company */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div className="space-y-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                    <div className="space-y-1.5 sm:space-y-2">
                       <label
                         htmlFor="email"
-                        className="block text-xs font-bold text-slate-200 tracking-wider uppercase"
+                        className="block text-[11px] sm:text-xs font-bold text-slate-200 tracking-wider uppercase"
                       >
                         Corporate Email
                       </label>
@@ -164,7 +164,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         placeholder="markus.weber@company.com"
                         className={cn(
-                          "w-full rounded-2xl bg-slate-950/80 px-4 py-3.5 text-sm text-white placeholder-slate-500 outline-none transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
+                          "w-full rounded-2xl bg-slate-950/80 px-3.5 py-3 sm:px-4 sm:py-3.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
                           errors.email
                             ? "ring-2 ring-red-400"
                             : "focus:ring-2 focus:ring-emerald-400/50"
@@ -178,10 +178,10 @@ export default function ContactPage() {
                       )}
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="space-y-1.5 sm:space-y-2">
                       <label
                         htmlFor="company"
-                        className="block text-xs font-bold text-slate-200 tracking-wider uppercase"
+                        className="block text-[11px] sm:text-xs font-bold text-slate-200 tracking-wider uppercase"
                       >
                         Company / Plant Name
                       </label>
@@ -193,7 +193,7 @@ export default function ContactPage() {
                         onChange={handleChange}
                         placeholder="e.g. BMW Group Plant 2.1"
                         className={cn(
-                          "w-full rounded-2xl bg-slate-950/80 px-4 py-3.5 text-sm text-white placeholder-slate-500 outline-none transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
+                          "w-full rounded-2xl bg-slate-950/80 px-3.5 py-3 sm:px-4 sm:py-3.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
                           errors.company
                             ? "ring-2 ring-red-400"
                             : "focus:ring-2 focus:ring-emerald-400/50"
@@ -209,10 +209,10 @@ export default function ContactPage() {
                   </div>
 
                   {/* Facility Type */}
-                  <div className="space-y-2">
+                  <div className="space-y-1.5 sm:space-y-2">
                     <label
                       htmlFor="facilityType"
-                      className="block text-xs font-bold text-slate-200 tracking-wider uppercase"
+                      className="block text-[11px] sm:text-xs font-bold text-slate-200 tracking-wider uppercase"
                     >
                       Facility Architecture Type
                     </label>
@@ -221,7 +221,7 @@ export default function ContactPage() {
                       name="facilityType"
                       value={formData.facilityType}
                       onChange={handleChange}
-                      className="w-full rounded-2xl bg-slate-950/80 px-4 py-3.5 text-sm text-white outline-none focus:ring-2 focus:ring-emerald-400/50 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none"
+                      className="w-full rounded-2xl bg-slate-950/80 px-3.5 py-3 sm:px-4 sm:py-3.5 text-xs sm:text-sm text-white outline-none focus:ring-2 focus:ring-emerald-400/50 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none"
                     >
                       {facilityTypes.map((t) => (
                         <option key={t} value={t} className="bg-slate-900 text-white">
@@ -232,10 +232,10 @@ export default function ContactPage() {
                   </div>
 
                   {/* Message */}
-                  <div className="space-y-2">
+                  <div className="space-y-1.5 sm:space-y-2">
                     <label
                       htmlFor="message"
-                      className="block text-xs font-bold text-slate-200 tracking-wider uppercase"
+                      className="block text-[11px] sm:text-xs font-bold text-slate-200 tracking-wider uppercase"
                     >
                       Technical Requirements / Single-Line Details
                     </label>
@@ -247,7 +247,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       placeholder="Specify your incoming voltage, number of submeters needed, existing SCADA/Modbus network, or 30-day pilot timeframe..."
                       className={cn(
-                        "w-full rounded-2xl bg-slate-950/80 px-4 py-3.5 text-sm text-white placeholder-slate-500 outline-none transition-all resize-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
+                        "w-full rounded-2xl bg-slate-950/80 px-3.5 py-3 sm:px-4 sm:py-3.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none transition-all resize-none shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)] border-none",
                         errors.message
                           ? "ring-2 ring-red-400"
                           : "focus:ring-2 focus:ring-emerald-400/50"

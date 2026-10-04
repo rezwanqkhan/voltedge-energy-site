@@ -102,17 +102,17 @@ export default function ProductsPage() {
             </div>
           </ScrollReveal>
 
-          {/* Category Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2.5">
+          {/* Category Filter Tabs: Horizontal touch scrollable on mobile */}
+          <div className="flex items-center sm:justify-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none px-1">
             {categories.map((cat) => {
               const isSelected = activeCategory === cat.value;
               return (
                 <button
                   key={cat.value}
                   onClick={() => setActiveCategory(cat.value)}
-                  className={`rounded-2xl px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all ${
+                  className={`rounded-2xl px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-semibold transition-all whitespace-nowrap shrink-0 border-none ${
                     isSelected
-                      ? "bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-bold shadow-[0_0_20px_rgba(52,211,153,0.4)]"
+                      ? "bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 font-extrabold shadow-[0_0_20px_rgba(52,211,153,0.4)]"
                       : "bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800"
                   }`}
                 >
@@ -123,7 +123,7 @@ export default function ProductsPage() {
           </div>
 
           {/* Compact Product Cards: Clean 2x2 Grid with Vibrant Themes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
             {filtered.map((product) => {
               const isExpanded = expandedId === product.id;
               const theme = productThemeMap[product.id] || {
@@ -139,27 +139,27 @@ export default function ProductsPage() {
               return (
                 <div
                   key={product.id}
-                  className="glass-card p-6 rounded-3xl flex flex-col justify-between space-y-5"
+                  className="glass-card p-5 sm:p-7 rounded-3xl flex flex-col justify-between space-y-4 sm:space-y-5 border-none"
                 >
-                  <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4">
                     {/* Top Header */}
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-start sm:items-center justify-between gap-2">
                       <div className="flex items-center gap-3">
-                        <div className={`h-11 w-11 rounded-2xl ${theme.iconBg} flex items-center justify-center ${theme.iconColor}`}>
+                        <div className={`h-10 w-10 sm:h-11 sm:w-11 rounded-2xl ${theme.iconBg} flex items-center justify-center ${theme.iconColor} shrink-0`}>
                           <IconComponent className="h-5 w-5" />
                         </div>
                         <div>
-                          <h2 className="text-xl font-bold text-white tracking-tight">
+                          <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
                             {product.name}
                           </h2>
-                          <p className={`text-xs ${theme.accentColor} font-medium`}>
+                          <p className={`text-[11px] sm:text-xs ${theme.accentColor} font-medium`}>
                             {product.tagline}
                           </p>
                         </div>
                       </div>
 
                       {product.badge && (
-                        <span className={`px-3 py-1 rounded-full text-xs font-semibold ${theme.badgeStyle}`}>
+                        <span className={`px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold shrink-0 ${theme.badgeStyle}`}>
                           {product.badge}
                         </span>
                       )}
@@ -172,11 +172,11 @@ export default function ProductsPage() {
 
                     {/* Highlights */}
                     {product.highlights && (
-                      <div className="flex flex-wrap gap-2 pt-1">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                         {product.highlights.map((h, i) => (
                           <span
                             key={i}
-                            className="px-2.5 py-1 rounded-xl bg-slate-950/60 text-[11px] text-slate-300 flex items-center gap-1.5"
+                            className="px-2.5 py-1 rounded-xl bg-slate-950/60 text-[10px] sm:text-[11px] text-slate-300 flex items-center gap-1.5 border-none"
                           >
                             <CheckCircle2 className={`h-3 w-3 ${theme.accentColor} shrink-0`} />
                             <span>{h}</span>
@@ -189,7 +189,7 @@ export default function ProductsPage() {
                     <div className="pt-2">
                       <button
                         onClick={() => setExpandedId(isExpanded ? null : product.id)}
-                        className="w-full flex items-center justify-between p-3 rounded-2xl bg-slate-950/60 hover:bg-slate-800/80 text-xs font-semibold text-slate-200 hover:text-white transition-all"
+                        className="w-full flex items-center justify-between p-3 rounded-2xl bg-slate-950/60 hover:bg-slate-800/80 text-xs font-semibold text-slate-200 hover:text-white transition-all border-none"
                       >
                         <span>{isExpanded ? "Hide Technical Specifications" : "View Technical Specifications"}</span>
                         {isExpanded ? (
@@ -200,14 +200,14 @@ export default function ProductsPage() {
                       </button>
 
                       {isExpanded && (
-                        <div className="mt-3 rounded-2xl bg-slate-950/90 p-4 space-y-2 text-xs">
+                        <div className="mt-3 rounded-2xl bg-slate-950/90 p-3.5 sm:p-4 space-y-2 text-xs border-none">
                           {product.specs.map((spec, i) => (
                             <div
                               key={i}
-                              className="flex flex-col sm:flex-row sm:items-center justify-between py-1.5 border-b border-white/5 last:border-b-0 gap-1"
+                              className="flex items-center justify-between py-1.5 border-b border-white/5 last:border-b-0 gap-2 text-[11px] sm:text-xs"
                             >
-                              <span className="text-slate-400 font-medium">{spec.label}</span>
-                              <span className="text-white font-mono-numbers font-semibold sm:text-right">
+                              <span className="text-slate-400 font-medium truncate">{spec.label}</span>
+                              <span className="text-white font-mono-numbers font-semibold text-right shrink-0">
                                 {spec.value}
                               </span>
                             </div>
@@ -218,18 +218,18 @@ export default function ProductsPage() {
                   </div>
 
                   {/* Card Bottom CTA */}
-                  <div className="pt-3 flex items-center justify-between">
+                  <div className="pt-2 flex items-center justify-between gap-2">
                     <Link
                       href="/contact"
-                      className={`flex items-center gap-1.5 text-xs font-bold ${theme.linkColor} transition-colors`}
+                      className={`flex items-center gap-1 text-[11px] sm:text-xs font-bold ${theme.linkColor} transition-colors`}
                     >
-                      <span>Inquire Datasheet & Pilot</span>
-                      <ArrowRight className="h-3.5 w-3.5" />
+                      <span>Inquire Datasheet</span>
+                      <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                     </Link>
 
                     <Link
                       href="/contact"
-                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-bold transition-all shadow-[0_2px_14px_rgba(52,211,153,0.35)]"
+                      className="px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 text-slate-950 text-xs font-extrabold transition-all shadow-[0_2px_14px_rgba(52,211,153,0.35)] border-none"
                     >
                       Request Quote
                     </Link>

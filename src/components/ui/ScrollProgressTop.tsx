@@ -32,14 +32,14 @@ export function ScrollProgressTop() {
   const strokeDashoffset = circumference - (scrollProgress / 100) * circumference;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       <motion.button
         onClick={scrollToTop}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
         aria-label="Scroll to top"
         title="Scroll to top"
-        className={`relative flex h-12 w-12 items-center justify-center rounded-full bg-slate-900/90 text-white shadow-[0_4px_25px_rgba(0,0,0,0.5)] backdrop-blur-2xl transition-all duration-300 border-none group ${
+        className={`relative flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/90 text-white shadow-[0_4px_25px_rgba(0,0,0,0.5)] backdrop-blur-2xl transition-all duration-300 border-none group ${
           hasScrolled
             ? "opacity-100 shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_25px_rgba(52,211,153,0.55)]"
             : "opacity-60 hover:opacity-100"

@@ -197,249 +197,269 @@ export function FloatingContactWidget() {
   const isInitialState = messages.length <= 1;
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
-      {/* Interactive AI Chat Console */}
+    <>
+      {/* Mobile Backdrop Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.22 }}
-            className="mb-3 w-[calc(100vw-3rem)] sm:w-[430px] max-h-[82vh] sm:max-h-[640px] flex flex-col rounded-3xl bg-slate-900/95 shadow-[0_25px_70px_-15px_rgba(0,0,0,0.85)] backdrop-blur-2xl border-none overflow-hidden"
-          >
-            {/* Console Header */}
-            <div className="px-5 py-4 bg-slate-950/70 flex items-center justify-between border-b border-white/5">
-              <div className="flex items-center gap-3">
-                <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400/20 to-teal-400/20 text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.25)]">
-                  <Bot className="h-5 w-5" />
-                  <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                  </span>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-bold text-white tracking-tight">VoltEdge Energy Copilot</h3>
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[10px] font-semibold">
-                      AI Live
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 sm:hidden"
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50">
+        {/* Interactive AI Chat Console */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ duration: 0.22 }}
+              className="fixed inset-x-3 bottom-3 sm:inset-x-auto sm:left-6 sm:bottom-6 sm:w-[430px] max-h-[85vh] sm:max-h-[640px] flex flex-col rounded-3xl bg-slate-900/95 shadow-[0_25px_70px_-15px_rgba(0,0,0,0.85)] backdrop-blur-2xl border-none overflow-hidden z-50"
+            >
+              {/* Console Header */}
+              <div className="px-4 py-3 sm:px-5 sm:py-4 bg-slate-950/70 flex items-center justify-between border-b border-white/5">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400/20 to-teal-400/20 text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.25)]">
+                    <Bot className="h-4 w-4 sm:h-5 sm:w-5" />
+                    <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
-                    <span>Industrial Telemetry & Engineering Desk</span>
-                  </p>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-xs sm:text-sm font-bold text-white tracking-tight">VoltEdge Energy Copilot</h3>
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-[9px] sm:text-[10px] font-semibold">
+                        AI Live
+                      </span>
+                    </div>
+                    <p className="text-[10px] sm:text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
+                      <span>Industrial Telemetry Desk</span>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={handleReset}
+                    title="Reset conversation"
+                    className="h-8 w-8 rounded-full bg-slate-800/60 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
+                  >
+                    <RotateCcw className="h-3.5 w-3.5" />
+                  </button>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="h-8 w-8 rounded-full bg-slate-800/60 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
+                    aria-label="Close chat"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={handleReset}
-                  title="Reset conversation"
-                  className="h-8 w-8 rounded-full bg-slate-800/60 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
+              {/* Direct Hotline Strip */}
+              <div className="px-4 py-2 sm:px-5 sm:py-2.5 bg-emerald-500/10 flex items-center justify-between text-xs border-b border-white/5">
+                <div className="flex items-center gap-2 text-emerald-300 font-medium">
+                  <PhoneCall className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <span className="text-[10px] sm:text-[11px] text-slate-300">Direct Engineer Desk:</span>
+                  <span className="font-mono-numbers font-bold text-white text-[11px] sm:text-[12px]">+49 89 123 4567</span>
+                </div>
+                <a
+                  href="tel:+49891234567"
+                  className="px-2.5 py-1 rounded-lg bg-emerald-400/20 hover:bg-emerald-400/30 text-emerald-300 font-bold text-[10px] uppercase tracking-wider transition-colors"
                 >
-                  <RotateCcw className="h-3.5 w-3.5" />
-                </button>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="h-8 w-8 rounded-full bg-slate-800/60 text-slate-400 hover:text-white flex items-center justify-center transition-colors"
-                  aria-label="Close chat"
-                >
-                  <X className="h-4 w-4" />
-                </button>
+                  Call
+                </a>
               </div>
-            </div>
 
-            {/* Direct Hotline Strip with Real Phone Icon */}
-            <div className="px-5 py-2.5 bg-emerald-500/10 flex items-center justify-between text-xs border-b border-white/5">
-              <div className="flex items-center gap-2 text-emerald-300 font-medium">
-                <PhoneCall className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                <span className="text-[11px] text-slate-300">Direct Engineer Desk:</span>
-                <span className="font-mono-numbers font-bold text-white text-[12px]">+49 89 123 4567</span>
-              </div>
-              <a
-                href="tel:+49891234567"
-                className="px-2.5 py-1 rounded-lg bg-emerald-400/20 hover:bg-emerald-400/30 text-emerald-300 font-bold text-[10px] uppercase tracking-wider transition-colors"
-              >
-                Call
-              </a>
-            </div>
-
-            {/* Chat Stream Area */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 text-xs">
-              {messages.map((msg, index) => (
-                <div key={msg.id} className="space-y-3">
-                  <div
-                    className={`flex gap-2.5 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    {msg.sender === "bot" && (
-                      <div className="h-7 w-7 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
-                        <Bot className="h-4 w-4" />
-                      </div>
-                    )}
-
+              {/* Chat Stream Area */}
+              <div className="flex-1 overflow-y-auto p-3.5 sm:p-5 space-y-3.5 sm:space-y-4 text-xs">
+                {messages.map((msg, index) => (
+                  <div key={msg.id} className="space-y-3">
                     <div
-                      className={`max-w-[85%] rounded-2xl p-3.5 space-y-2 leading-relaxed ${
-                        msg.sender === "user"
-                          ? "bg-emerald-400 text-slate-950 font-medium shadow-md"
-                          : "bg-slate-950/70 text-slate-200"
-                      }`}
+                      className={`flex gap-2 sm:gap-2.5 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                     >
-                      <p>{msg.text}</p>
-
-                      {msg.actionLink && (
-                        <div className="pt-1">
-                          <Link
-                            href={msg.actionLink.href}
-                            onClick={() => setIsOpen(false)}
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500/25 text-[11px] font-bold transition-colors"
-                          >
-                            <span>{msg.actionLink.label}</span>
-                            <ArrowRight className="h-3 w-3" />
-                          </Link>
+                      {msg.sender === "bot" && (
+                        <div className="h-6 w-6 sm:h-7 sm:w-7 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                          <Bot className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                         </div>
                       )}
 
                       <div
-                        className={`text-[9px] font-mono-numbers pt-0.5 ${
-                          msg.sender === "user" ? "text-slate-800" : "text-slate-400"
+                        className={`max-w-[85%] rounded-2xl p-3 sm:p-3.5 space-y-2 leading-relaxed ${
+                          msg.sender === "user"
+                            ? "bg-emerald-400 text-slate-950 font-medium shadow-md"
+                            : "bg-slate-950/70 text-slate-200"
                         }`}
                       >
-                        {msg.timestamp}
+                        <p>{msg.text}</p>
+
+                        {msg.actionLink && (
+                          <div className="pt-1">
+                            <Link
+                              href={msg.actionLink.href}
+                              onClick={() => setIsOpen(false)}
+                              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-300 hover:bg-emerald-500/25 text-[11px] font-bold transition-colors"
+                            >
+                              <span>{msg.actionLink.label}</span>
+                              <ArrowRight className="h-3 w-3" />
+                            </Link>
+                          </div>
+                        )}
+
+                        <div
+                          className={`text-[9px] font-mono-numbers pt-0.5 ${
+                            msg.sender === "user" ? "text-slate-800" : "text-slate-400"
+                          }`}
+                        >
+                          {msg.timestamp}
+                        </div>
                       </div>
+
+                      {msg.sender === "user" && (
+                        <div className="h-6 w-6 sm:h-7 sm:w-7 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center shrink-0 mt-0.5">
+                          <User className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                        </div>
+                      )}
                     </div>
 
-                    {msg.sender === "user" && (
-                      <div className="h-7 w-7 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center shrink-0 mt-0.5">
-                        <User className="h-4 w-4" />
-                      </div>
+                    {/* Suggested Topics inside initial stream */}
+                    {index === 0 && (isInitialState || showSuggestedMenu) && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="ml-7 sm:ml-9 mr-1 space-y-2 pt-1"
+                      >
+                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                          <Sparkles className="h-3 w-3 text-emerald-400" />
+                          <span>Recommended Engineering Topics</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {PRESET_TOPICS.map((topic) => {
+                            const IconComp = topic.icon;
+                            return (
+                              <button
+                                key={topic.id}
+                                onClick={() => handleSend(topic.query)}
+                                className="p-2.5 sm:p-3 rounded-2xl bg-slate-950/60 hover:bg-slate-800 text-left transition-all group flex items-start gap-2.5"
+                              >
+                                <div
+                                  className={`h-7 w-7 sm:h-8 sm:w-8 rounded-xl ${topic.iconBg} flex items-center justify-center ${topic.iconColor} shrink-0 mt-0.5`}
+                                >
+                                  <IconComp className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-xs font-semibold text-slate-200 group-hover:text-emerald-300 transition-colors truncate">
+                                    {topic.title}
+                                  </div>
+                                  <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                                    {topic.subtitle}
+                                  </div>
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
                     )}
                   </div>
+                ))}
 
-                  {/* If this is the welcome message in the initial state, display the Suggested Topics right here in the conversation area! */}
-                  {index === 0 && (isInitialState || showSuggestedMenu) && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="ml-9 mr-2 space-y-2 pt-1"
+                {/* Typing indicator */}
+                {isTyping && (
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-6 w-6 sm:h-7 sm:w-7 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                      <Bot className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                    </div>
+                    <div className="rounded-2xl bg-slate-950/70 px-3.5 py-2.5 text-slate-400 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.2s]" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.4s]" />
+                    </div>
+                  </div>
+                )}
+
+                <div ref={messagesEndRef} />
+              </div>
+
+              {/* Input Bar */}
+              <div className="p-2.5 sm:p-3 bg-slate-950/80 border-t border-white/5">
+                {!isInitialState && (
+                  <div className="pb-1.5 flex items-center justify-between">
+                    <button
+                      onClick={() => setShowSuggestedMenu(!showSuggestedMenu)}
+                      className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] text-slate-400 hover:text-emerald-400 transition-colors"
                     >
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                        <Sparkles className="h-3 w-3 text-emerald-400" />
-                        <span>Recommended Engineering Topics</span>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {PRESET_TOPICS.map((topic) => {
-                          const IconComp = topic.icon;
-                          return (
-                            <button
-                              key={topic.id}
-                              onClick={() => handleSend(topic.query)}
-                              className="p-3 rounded-2xl bg-slate-950/60 hover:bg-slate-800 text-left transition-all group flex items-start gap-2.5"
-                            >
-                              <div
-                                className={`h-8 w-8 rounded-xl ${topic.iconBg} flex items-center justify-center ${topic.iconColor} shrink-0 mt-0.5`}
-                              >
-                                <IconComp className="h-4 w-4" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs font-semibold text-slate-200 group-hover:text-emerald-300 transition-colors truncate">
-                                  {topic.title}
-                                </div>
-                                <div className="text-[10px] text-slate-400 truncate mt-0.5">
-                                  {topic.subtitle}
-                                </div>
-                              </div>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              ))}
-
-              {/* Typing indicator */}
-              {isTyping && (
-                <div className="flex items-center gap-2.5">
-                  <div className="h-7 w-7 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
-                    <Bot className="h-4 w-4" />
+                      <HelpCircle className="h-3 w-3 text-emerald-400" />
+                      <span>{showSuggestedMenu ? "Hide topics" : "Show topics"}</span>
+                    </button>
+                    <span className="text-[9px] sm:text-[10px] text-slate-500 font-mono-numbers">TLS 1.3 Encrypted</span>
                   </div>
-                  <div className="rounded-2xl bg-slate-950/70 px-4 py-3 text-slate-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.4s]" />
-                  </div>
-                </div>
-              )}
+                )}
 
-              <div ref={messagesEndRef} />
-            </div>
-
-            {/* Input Bar with Quick Suggested Topics Toggle Button */}
-            <div className="p-3 bg-slate-950/80 border-t border-white/5">
-              {!isInitialState && (
-                <div className="pb-2 flex items-center justify-between">
-                  <button
-                    onClick={() => setShowSuggestedMenu(!showSuggestedMenu)}
-                    className="inline-flex items-center gap-1.5 text-[11px] text-slate-400 hover:text-emerald-400 transition-colors"
-                  >
-                    <HelpCircle className="h-3 w-3 text-emerald-400" />
-                    <span>{showSuggestedMenu ? "Hide topics" : "Show suggested topics"}</span>
-                  </button>
-                  <span className="text-[10px] text-slate-500 font-mono-numbers">TLS 1.3 Encrypted</span>
-                </div>
-              )}
-
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  handleSend();
-                }}
-                className="flex items-center gap-2"
-              >
-                <input
-                  type="text"
-                  value={inputVal}
-                  onChange={(e) => setInputVal(e.target.value)}
-                  placeholder="Ask about IoT meters, SCADA, protocols..."
-                  className="flex-1 rounded-2xl bg-slate-900 px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
-                />
-                <button
-                  type="submit"
-                  disabled={!inputVal.trim()}
-                  aria-label="Send message"
-                  className="h-10 w-10 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 disabled:opacity-40 disabled:pointer-events-none text-slate-950 flex items-center justify-center transition-all shadow-[0_2px_12px_rgba(52,211,153,0.35)] shrink-0"
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSend();
+                  }}
+                  className="flex items-center gap-2"
                 >
-                  <Send className="h-4 w-4" />
-                </button>
-              </form>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                  <input
+                    type="text"
+                    value={inputVal}
+                    onChange={(e) => setInputVal(e.target.value)}
+                    placeholder="Ask about meters, SCADA, protocols..."
+                    className="flex-1 rounded-2xl bg-slate-900 px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-emerald-400/50"
+                  />
+                  <button
+                    type="submit"
+                    disabled={!inputVal.trim()}
+                    aria-label="Send message"
+                    className="h-9 w-9 sm:h-10 sm:w-10 rounded-2xl bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-300 hover:to-teal-300 disabled:opacity-40 disabled:pointer-events-none text-slate-950 flex items-center justify-center transition-all shadow-[0_2px_12px_rgba(52,211,153,0.35)] shrink-0"
+                  >
+                    <Send className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  </button>
+                </form>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Floating Trigger Button: AI Energy Copilot */}
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="flex items-center gap-2.5 rounded-full bg-slate-900/90 px-4 py-3 text-white shadow-[0_4px_25px_rgba(0,0,0,0.5)] backdrop-blur-2xl hover:bg-slate-800 transition-all border-none"
-        aria-label="Open AI Energy Assistant"
-      >
-        <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-400/20 text-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.3)]">
-          <Bot className="h-4 w-4" />
-          <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-        </div>
-        <div className="text-left pr-1">
-          <div className="text-xs font-bold text-slate-100 flex items-center gap-1.5">
-            <span>Energy AI Copilot</span>
-            <span className="text-[10px] text-emerald-400 font-normal hidden sm:inline">• Live Desk</span>
-          </div>
-        </div>
-      </motion.button>
-    </div>
+        {/* Floating Trigger Button: Hidden when modal is open */}
+        {!isOpen && (
+          <motion.button
+            onClick={() => setIsOpen(true)}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-2 rounded-full bg-slate-900/90 p-2 sm:px-4 sm:py-3 text-white shadow-[0_4px_25px_rgba(0,0,0,0.5)] backdrop-blur-2xl hover:bg-slate-800 transition-all border-none"
+            aria-label="Open AI Energy Assistant"
+          >
+            <div className="relative flex h-8 w-8 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-400/20 text-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.3)]">
+              <Bot className="h-4 w-4" />
+              <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+              </span>
+            </div>
+            <div className="text-left pr-1 hidden sm:block">
+              <div className="text-xs font-bold text-slate-100 flex items-center gap-1.5">
+                <span>Energy AI Copilot</span>
+                <span className="text-[10px] text-emerald-400 font-normal hidden md:inline">• Live Desk</span>
+              </div>
+            </div>
+          </motion.button>
+        )}
+      </div>
+    </>
   );
 }
