@@ -1,105 +1,172 @@
 @import "tailwindcss";
 
-/* =========================================================
-   VoltEdge Energy — High-Contrast Industrial Surface System
-   Crisp, Distinct, Organic — NO Card Borders / Corner Lines
-   Rich Multi-Layered Shadows & High-Legibility Contrast
-   ========================================================= */
+@theme {
+  --color-accent: #00e5ff;
+  --color-accent-hover: #38bdf8;
+  --color-accent-muted: rgba(0, 229, 255, 0.12);
+  --color-accent-glow: rgba(0, 229, 255, 0.35);
+
+  --color-dark-bg: #0b0f19;
+  --color-dark-surface: #111827;
+  --color-dark-card: #162032;
+  --color-dark-border: rgba(255, 255, 255, 0.08);
+
+  --color-light-bg: #f8fafc;
+  --color-light-surface: #ffffff;
+  --color-light-card: #ffffff;
+  --color-light-border: rgba(15, 23, 42, 0.08);
+
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+}
 
 :root {
-  --bg-deep: #060a12;
-  --bg-surface: #0e1628;
-  --accent-light-green: #34d399;
-  --accent-emerald: #10b981;
-  --accent-cyan: #06b6d4;
-  --accent-amber: #f59e0b;
+  --accent: #0284c7;
+  --accent-rgb: 2, 132, 199;
+  --dark-bg: #0b0f19;
+  --dark-surface: #111827;
+  --dark-card: #162032;
+  --light-bg: #f8fafc;
+  --light-surface: #ffffff;
+  --light-card: #ffffff;
 }
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
 
 body {
-  background-color: var(--bg-deep);
-  color: #f8fafc;
+  background-color: #f8fafc;
+  color: #0f172a;
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Atmospheric Ambient Glow with Deep Multi-Tone Energy */
-.bg-ambient-mesh {
-  background-image: 
-    radial-gradient(ellipse 950px 650px at 15% 10%, rgba(52, 211, 153, 0.2), transparent 70%),
-    radial-gradient(ellipse 850px 600px at 85% 25%, rgba(6, 182, 212, 0.16), transparent 70%),
-    radial-gradient(ellipse 1000px 750px at 50% 80%, rgba(16, 185, 129, 0.16), transparent 75%),
-    radial-gradient(ellipse 700px 500px at 70% 55%, rgba(14, 165, 233, 0.12), transparent 70%),
-    radial-gradient(circle 500px at 25% 60%, rgba(245, 158, 11, 0.06), transparent 70%);
+/* Fluid Heading scale clamp utilities */
+.fluid-h1 {
+  font-size: clamp(1.65rem, 5vw, 3.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
 }
 
-/* High-Contrast Organic Card — Distinct elevation, deep shadow, NO border lines */
-.glass-card {
-  background: linear-gradient(180deg, rgba(18, 27, 46, 0.94) 0%, rgba(11, 18, 33, 0.96) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: none;
-  border-radius: 1.35rem;
-  box-shadow: 
-    0 20px 45px -12px rgba(0, 0, 0, 0.8),
-    0 4px 16px -4px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+.fluid-h2 {
+  font-size: clamp(1.35rem, 3.2vw, 2.5rem);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
 }
 
-.glass-card:hover {
-  background: linear-gradient(180deg, rgba(23, 35, 59, 0.96) 0%, rgba(14, 23, 41, 0.98) 100%);
-  box-shadow: 
-    0 28px 60px -15px rgba(0, 0, 0, 0.9),
-    0 8px 24px -6px rgba(0, 0, 0, 0.7),
-    0 0 35px -5px rgba(52, 211, 153, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transform: translateY(-3px);
-}
-
-/* High-Contrast Seamless Panel — Deep shadow, NO border */
-.glass-panel {
-  background: linear-gradient(180deg, rgba(16, 25, 43, 0.94) 0%, rgba(10, 16, 30, 0.96) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: none;
-  border-radius: 1.35rem;
-  box-shadow: 
-    0 24px 50px -12px rgba(0, 0, 0, 0.85),
-    0 6px 20px -4px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* Monospace Tabular Figures */
+/* Monospace Tabular Figures for industrial telemetry */
 .font-mono-numbers {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
 }
 
-/* Custom Scrollbar */
+/* Section Themes */
+.theme-dark {
+  background-color: #0b0f19;
+  color: #f1f5f9;
+}
+
+.theme-light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.theme-accent {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.08) 0%, rgba(0, 229, 255, 0.12) 100%);
+  color: #0f172a;
+}
+
+/* Dark theme card (Used for live telemetry console & high-contrast devices) */
+.card-dark {
+  background-color: #0b0f19;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.4);
+  transition: all 0.25s ease;
+}
+
+.card-dark:hover {
+  border-color: rgba(0, 229, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(0, 229, 255, 0.2);
+}
+
+/* Light theme card (Primary standard across site) */
+.card-light {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.05);
+  transition: all 0.25s ease;
+}
+
+.card-light:hover {
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -6px rgba(15, 23, 42, 0.08), 0 0 20px -5px rgba(2, 132, 199, 0.15);
+}
+
+/* Ambient glow background for Hero */
+.bg-hero-glow {
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(2, 132, 199, 0.09), transparent 70%),
+    radial-gradient(ellipse 700px 400px at 85% 25%, rgba(0, 229, 255, 0.07), transparent 60%);
+}
+
+/* Accessible focus ring */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0284c7;
+}
+
+/* Shimmer animation for key buttons */
+@keyframes button-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.btn-shimmer {
+  background-size: 200% auto;
+  animation: button-shimmer 3s linear infinite;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #060a12;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(52, 211, 153, 0.4);
+  background: #cbd5e1;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(52, 211, 153, 0.7);
+  background: #94a3b8;
 }
 
 /* Text Selection */
 ::selection {
-  background-color: rgba(52, 211, 153, 0.45);
-  color: #ffffff;
+  background-color: rgba(2, 132, 199, 0.2);
+  color: #0f172a;
+}
+
+/* Respect prefers-reduced-motion at CSS level */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

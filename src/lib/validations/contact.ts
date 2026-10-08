@@ -1,34 +1,50 @@
 import { z } from "zod";
 
-/** Zod validation schema for the contact form */
+/**
+ * Zod validation schema for the contact form.
+ * Shared between client-side validation and server-side Route Handler.
+ */
 export const contactFormSchema = z.object({
   name: z
     .string()
-    .min(2, { message: "Name must be at least 2 characters." })
-    .max(100, { message: "Name must be under 100 characters." }),
+    .trim()
+    .min(2, { message: "Full name must be at least 2 characters." })
+    .max(100, { message: "Full name must be under 100 characters." }),
 
   email: z
     .string()
-    .email({ message: "Please enter a valid email address." }),
+    .trim()
+    .email({ message: "Please enter a valid work email address." }),
 
   company: z
     .string()
-    .min(2, { message: "Company name must be at least 2 characters." })
+    .trim()
     .max(100, { message: "Company name must be under 100 characters." })
     .optional()
     .or(z.literal("")),
 
-  facilityType: z
-    .enum(["Manufacturing", "Data Center", "Commercial", "Cold Storage", "Other"])
-    .optional(),
+  phone: z
+    .string()
+    .trim()
+    .max(30, { message: "Phone number is too long." })
+    .optional()
+    .or(z.literal("")),
+
+  product: z
+    .string()
+    .trim()
+    .optional()
+    .or(z.literal("")),
 
   message: z
     .string()
-    .min(10, { message: "Message must be at least 10 characters." })
-    .max(1000, { message: "Message must be under 1000 characters." }),
+    .trim()
+    .min(10, { message: "Inquiry message must be at least 10 characters." })
+    .max(1500, { message: "Inquiry message must be under 1500 characters." }),
+
+  // Honeypot field for bot protection (must remain empty)
+  website: z.string().max(0, { message: "Bot submission detected." }).optional().or(z.literal("")),
 });
 
-/** Aliases for convenience */
 export const contactSchema = contactFormSchema;
-export type ContactFormValues = z.infer<typeof contactFormSchema>;
 export type ContactFormData = z.infer<typeof contactFormSchema>;

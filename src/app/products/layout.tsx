@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "Industrial IoT Products & Gateways | VoltEdge Energy",
     description:
       "Explore VoltEdge precision-engineered 3-phase meters, multi-protocol DIN-rail IoT gateways, and cloud software built for industrial energy reliability.",
-    url: "https://voltedge-energy.vercel.app/products",
+    url: "https://voltedge-energy-site.vercel.app/products",
     siteName: "VoltEdge Energy",
     locale: "en_US",
     type: "website",
